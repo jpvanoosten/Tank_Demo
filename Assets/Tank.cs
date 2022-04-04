@@ -43,10 +43,6 @@ public class Tank : MonoBehaviour
             deltaZ -= tankSpeed * Time.deltaTime;
         }
 
-        Vector3 pos = new Vector3();
-        pos.z += deltaZ;
-        transform.Translate(pos, Space.Self);
-
         if (Input.GetKey(KeyCode.D))
         {
             rotY += tankRotationSpeed * Time.deltaTime;
@@ -57,9 +53,16 @@ public class Tank : MonoBehaviour
             rotY -= tankRotationSpeed * Time.deltaTime;
         }
 
+        // Tank translation.
+        Vector3 pos = new Vector3();
+        pos.z += deltaZ;
+        transform.Translate(pos, Space.Self);
+
+        // Tank rotation.
         tankRotation.y += rotY;
         transform.localEulerAngles = tankRotation;
 
+        // Tread rotation.
         leftTreadRotation.x += deltaZ / circumference * 360.0f;
         rightTreadRotation.x += deltaZ / circumference * 360.0f;
 
